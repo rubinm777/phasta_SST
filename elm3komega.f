@@ -1,4 +1,3 @@
-!!! modifications start at line 168 now
 !!! all constants defined in TurbKW. This function is not multi-phase friendly yet
 
 
@@ -25,8 +24,7 @@
      &          rho(npro)  !!check v
 
       real*8	srcRat(npro,2),
-     &		src(npro,2),		srcJac(npro,4),
-     &          srcRat1(npro),          src1(npro)
+     &		src(npro,2)
       !
       integer advdiff
       integer	e , n ! n is possibly redundant. clean up required
