@@ -1,4 +1,4 @@
-        subroutine e3qvar (yl,          shgl,
+        subroutine e3qvar (yl,          shgl,    
      &                     xl,          g1yi,
      &                     g2yi,        g3yi,        shg,
      &                     dxidx,       WdetJ )
@@ -34,10 +34,10 @@ c
 c
 c  passed arrays
 c
-        dimension yl(npro,nshl,ndof),
+        dimension yl(npro,nshl,ndof), 
      &            shgl(npro,nsd,nshl), xl(npro,nenl,nsd),
      &            g1yi(npro,nflow),       g2yi(npro,nflow),
-     &            g3yi(npro,nflow),       shg(npro,nshl,nsd),
+     &            g3yi(npro,nflow),       shg(npro,nshl,nsd), 
      &            dxidx(npro,nsd,nsd),   WdetJ(npro)
 c
 c  local arrays
@@ -63,29 +63,29 @@ c
 c
 c.... compute the inverse of deformation gradient
 c
-        dxidx(:,1,1) =   dxdxi(:,2,2) * dxdxi(:,3,3)
+        dxidx(:,1,1) =   dxdxi(:,2,2) * dxdxi(:,3,3) 
      &                 - dxdxi(:,3,2) * dxdxi(:,2,3)
-        dxidx(:,1,2) =   dxdxi(:,3,2) * dxdxi(:,1,3)
+        dxidx(:,1,2) =   dxdxi(:,3,2) * dxdxi(:,1,3) 
      &                 - dxdxi(:,1,2) * dxdxi(:,3,3)
-        dxidx(:,1,3) =   dxdxi(:,1,2) * dxdxi(:,2,3)
+        dxidx(:,1,3) =   dxdxi(:,1,2) * dxdxi(:,2,3) 
      &                 - dxdxi(:,1,3) * dxdxi(:,2,2)
-        tmp          = one / ( dxidx(:,1,1) * dxdxi(:,1,1)
-     &                       + dxidx(:,1,2) * dxdxi(:,2,1)
+        tmp          = one / ( dxidx(:,1,1) * dxdxi(:,1,1) 
+     &                       + dxidx(:,1,2) * dxdxi(:,2,1)  
      &                       + dxidx(:,1,3) * dxdxi(:,3,1) )
         dxidx(:,1,1) = dxidx(:,1,1) * tmp
         dxidx(:,1,2) = dxidx(:,1,2) * tmp
         dxidx(:,1,3) = dxidx(:,1,3) * tmp
-        dxidx(:,2,1) = (dxdxi(:,2,3) * dxdxi(:,3,1)
+        dxidx(:,2,1) = (dxdxi(:,2,3) * dxdxi(:,3,1) 
      &                - dxdxi(:,2,1) * dxdxi(:,3,3)) * tmp
-        dxidx(:,2,2) = (dxdxi(:,1,1) * dxdxi(:,3,3)
+        dxidx(:,2,2) = (dxdxi(:,1,1) * dxdxi(:,3,3) 
      &                - dxdxi(:,3,1) * dxdxi(:,1,3)) * tmp
-        dxidx(:,2,3) = (dxdxi(:,2,1) * dxdxi(:,1,3)
+        dxidx(:,2,3) = (dxdxi(:,2,1) * dxdxi(:,1,3) 
      &                - dxdxi(:,1,1) * dxdxi(:,2,3)) * tmp
-        dxidx(:,3,1) = (dxdxi(:,2,1) * dxdxi(:,3,2)
+        dxidx(:,3,1) = (dxdxi(:,2,1) * dxdxi(:,3,2) 
      &                - dxdxi(:,2,2) * dxdxi(:,3,1)) * tmp
-        dxidx(:,3,2) = (dxdxi(:,3,1) * dxdxi(:,1,2)
+        dxidx(:,3,2) = (dxdxi(:,3,1) * dxdxi(:,1,2) 
      &                - dxdxi(:,1,1) * dxdxi(:,3,2)) * tmp
-        dxidx(:,3,3) = (dxdxi(:,1,1) * dxdxi(:,2,2)
+        dxidx(:,3,3) = (dxdxi(:,1,1) * dxdxi(:,2,2) 
      &                - dxdxi(:,1,2) * dxdxi(:,2,1)) * tmp
 c
         WdetJ = Qwt(lcsyst,intp)/ tmp
@@ -104,15 +104,15 @@ c.... compute the global gradient of shape-function
 c
 c            ! N_{a,x_i}= N_{a,xi_i} xi_{i,x_j}
 c
-          shg(:,n,1) = shgl(:,1,n) * dxidx(:,1,1) +
+          shg(:,n,1) = shgl(:,1,n) * dxidx(:,1,1) + 
      &                 shgl(:,2,n) * dxidx(:,2,1) +
      &                 shgl(:,3,n) * dxidx(:,3,1)
-          shg(:,n,2) = shgl(:,1,n) * dxidx(:,1,2) +
+          shg(:,n,2) = shgl(:,1,n) * dxidx(:,1,2) + 
      &                 shgl(:,2,n) * dxidx(:,2,2) +
-     &                 shgl(:,3,n) * dxidx(:,3,2)
-          shg(:,n,3) = shgl(:,1,n) * dxidx(:,1,3) +
+     &                 shgl(:,3,n) * dxidx(:,3,2) 
+          shg(:,n,3) = shgl(:,1,n) * dxidx(:,1,3) + 
      &                 shgl(:,2,n) * dxidx(:,2,3) +
-     &                 shgl(:,3,n) * dxidx(:,3,3)
+     &                 shgl(:,3,n) * dxidx(:,3,3) 
 c
 c.... compute the global gradient of Y-variables
 c
@@ -145,7 +145,7 @@ c
 c     compute the variables for the local scalar diffusion
 c
 c-----------------------------------------------------------------------
-      subroutine e3qvarSclr  (yl,       shgl,         xl,
+      subroutine e3qvarSclr  (yl,       shgl,         xl, 
      &                        gradT,    dxidx,        WdetJ )
 
       include "common.h"
@@ -162,13 +162,13 @@ c
       real*8   shg(npro,nshl,nsd)
 
 
-      call e3metric( xl,         shgl,       dxidx,
+      call e3metric( xl,         shgl,       dxidx,  
      &               shg,        WdetJ)
 
       gradT = zero
       id=5+isclr
 c
-c  later, when there are more models than SA we will need a
+c  later, when there are more models than SA we will need a 
 c  more general function to calculate evisc at a quadrature point
 c
       do n = 1, nshl
@@ -182,57 +182,7 @@ c
 
        return
        end
-c-----------------------------------------------------------------------
-c
-c     compute the variables for the local scalar diffusion (specifically for k-w)
-c
-c-----------------------------------------------------------------------
-
-       subroutine e3qvarkwSclr  (yl,       shgl,         xl,
-       &                        gradK,   gradW,  dxidx,        WdetJ )
-
-       include "common.h"
-c
-c  passed arrays
-c
-       real*8   yl(npro,nshl,ndof),    shp(npro,nshl),
-       &         shgl(npro,nsd,nshl),   xl(npro,nenl,nsd),
-       &         dxidx(npro,nsd,nsd),   WdetJ(npro),
-       &         gradK(npro,nsd),    gradW(npro,nsd)
-c
-c  local arrays
-c
-       real*8   shg(npro,nshl,nsd)
-
-       integer id ,  n
+       
+            
 
 
-       call e3metric( xl,         shgl,       dxidx,
-       &               shg,        WdetJ)
-
-       gradK = zero
-       gradW = zero
-       id=6
-c
-c
-       do n = 1, nshl
-          gradK(:,1) = gradK(:,1) + shg(:,n,1) * yl(:,n,id)
-          gradK(:,2) = gradK(:,2) + shg(:,n,2) * yl(:,n,id)
-          gradK(:,3) = gradK(:,3) + shg(:,n,3) * yl(:,n,id)
-       enddo
-
-
-       id=7
-c
-c
-       do n = 1, nshl
-          gradW(:,1) = gradW(:,1) + shg(:,n,1) * yl(:,n,id)
-          gradW(:,2) = gradW(:,2) + shg(:,n,2) * yl(:,n,id)
-          gradW(:,3) = gradW(:,3) + shg(:,n,3) * yl(:,n,id)
-       enddo
-c
-c.... return
-c
-
-        return
-        end
