@@ -4,7 +4,7 @@ c-----------------------------------------------------------------------
 c
 c-----------------------------------------------------------------------
       module turbKW
-      real*8 mu, kappa, a1, CDES1, CDES2,  Cd1, Cd2
+      real*8 mu, kappa, a1, CDES1, CDES2,  Cd1, Cd2, tenpowerminusten
       real*8 alp1, alp2, beta1, beta2, sigk1, sigk2, sigw1, sigw2, tenpowerminustwenty
       parameter (
      &  CmuKW                     = 0.09 !!This variable is \beta^* in the NASA document
